@@ -28,6 +28,10 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+
+  lifecycle {
+    ignore_changes = [subnet]
+  }
 }
 
 resource "azurerm_subnet" "subnet" {
@@ -123,7 +127,7 @@ resource "azurerm_network_interface_security_group_association" "nsg_association
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
-# 7. Máquina Virtual Linux Econômica (Standard_B1s)
+# 7. Máquina Virtual Linux Econômica
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = "vm-${var.project_name}-${var.environment}"
   location            = azurerm_resource_group.rg.location
