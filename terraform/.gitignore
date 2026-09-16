@@ -1,0 +1,18 @@
+# Arquivos locais de estado do Terraform
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Arquivo com credenciais e chaves geradas
+*.tfvars
+*.pem
+id_rsa.pem
+
+# Pasta de plugins
+.terraform/
+.terraform.lock.hcl

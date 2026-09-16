@@ -1,0 +1,6 @@
+project_name   = "educacore"
+environment    = "dev"
+location       = "eastus"
+vm_size        = "Standard_B1s"
+admin_username = "azureuser"
+repo_url       = "https://github.com/lucasmetron/system-student-with-infra.git"
