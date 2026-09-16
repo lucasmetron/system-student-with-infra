@@ -10,10 +10,16 @@ services:
     environment:
       - PORT=3001
       - DATABASE_PATH=/app/data/educacore.sqlite
+      - NODE_ENV=production
     volumes:
       - ./backend/data:/app/data
     networks:
       - educacore-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   frontend:
     build:
@@ -24,9 +30,15 @@ services:
     ports:
       - "3000:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - educacore-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
   educacore-network:
