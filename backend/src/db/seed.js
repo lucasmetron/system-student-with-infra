@@ -263,4 +263,8 @@ function seed() {
     console.log('Seed completo.');
 }
 
-seed();
+if (require.main === module) {
+    seed();
+}
+
+module.exports = seed;

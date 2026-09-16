@@ -9,9 +9,7 @@ const searchRoutes = require('./routes/search.routes');
 
 const app = express();
 
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:5173']
-}));
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/alunos', alunosRoutes);
