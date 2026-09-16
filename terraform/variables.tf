@@ -13,13 +13,13 @@ variable "environment" {
 variable "location" {
   description = "Região da Azure onde os recursos serão criados"
   type        = string
-  default     = "westus2"
+  default     = "northcentralus"
 }
 
 variable "vm_size" {
-  description = "Tamanho da máquina virtual (Standard_B1s: 1 vCPU, 1 GB RAM - Free Tier)"
+  description = "Tamanho da máquina virtual (Standard_B2ats_v2: 2 vCPUs, 1 GB RAM - Free Tier)"
   type        = string
-  default     = "Standard_B1s"
+  default     = "Standard_B2ats_v2"
 }
 
 variable "admin_username" {

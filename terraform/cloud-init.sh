@@ -46,6 +46,7 @@ fi
 
 # 5. Constrói e inicia os contêineres Docker
 cd $APP_DIR
+mkdir -p $APP_DIR/backend/data && chmod -R 777 $APP_DIR/backend/data
 docker compose down || true
 docker compose up --build -d
 
