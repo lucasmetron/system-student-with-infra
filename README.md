@@ -31,47 +31,45 @@ Mais do que uma aplicação web funcional, este repositório documenta a impleme
 ## 🏗️ Arquitetura Completa da Solução
 
 ```mermaid
-flowchart TD
-    subgraph Local["👨‍💻 1. Desenvolvimento & IaC Local"]
+flowchart LR
+    subgraph Local["💻 1. Ambiente Local"]
+        direction TB
         Dev["Desenvolvedor"]
-        AppSource["Código Frontend & Backend"]
-        TFCode["Infraestrutura (.tf)"]
+        TF["Terraform (IaC)"]
+        Source["App (React + Node.js)"]
     end
 
-    subgraph GitHub["🐙 2. Controle de Versão & CI/CD"]
-        GitRepo["GitHub Repository (main)"]
-        GHActions["GitHub Actions (deploy.yml)"]
-        GHSecrets["Secrets (VM_HOST, SSH_KEY)"]
+    subgraph CI_CD["🐙 2. GitHub & CI/CD"]
+        direction TB
+        Repo["GitHub Repo (main)"]
+        GHA["GitHub Actions (deploy.yml)"]
+        Secrets["GitHub Secrets\n(Host, User, SSH Key)"]
     end
 
-    subgraph AzureCloud["☁️ 3. Microsoft Azure (Provisionado via Terraform)"]
-        subgraph VNet["Virtual Network (10.0.0.0/16)"]
-            Subnet["Subnet (10.0.1.0/24)"]
-            NSG["Firewall / NSG (Portas 22, 80, 3000, 3001)"]
-            PublicIP["IP Público Estático"]
-            
-            subgraph VM["Linux VM Ubuntu 22.04 LTS (Standard_B2ats_v2)"]
-                CloudInit["Cloud-Init (Swap 2GB + Docker Engine)"]
-                DockerDaemon["Docker Daemon & Compose"]
-                
-                subgraph DockerBridge["Rede Bridge Isolada (educacore-network)"]
-                    FrontContainer["Container Frontend (Nginx SPA :3000)"]
-                    BackContainer["Container Backend (Node.js API :3001)"]
-                    DataVol[("Volume Persistente SQLite")]
-                end
-            end
+    subgraph Azure["☁️ 3. Microsoft Azure Infrastructure"]
+        direction TB
+        NSG["Firewall / NSG\n(Portas 22, 80, 3000, 3001)"]
+        VM["VM Ubuntu 22.04 LTS\n(Standard_B2ats_v2 + Swap 2GB)"]
+        Docker["Docker Engine & Compose"]
+        
+        subgraph Containers["Stack de Contêineres"]
+            direction TB
+            Frontend["Frontend Container\n(Nginx SPA :3000)"]
+            Backend["Backend Container\n(Node.js API :3001)"]
+            DB[("Volume SQLite\nPersistente")]
         end
     end
 
-    Dev -->|git push| GitRepo
-    Dev -->|terraform apply| AzureCloud
-    GitRepo --> GHActions
-    GHSecrets -.-> GHActions
-    GHActions -->|SSH Deploy Automatizado| VM
-    CloudInit --> DockerDaemon
-    DockerDaemon --> FrontContainer
-    DockerDaemon --> BackContainer
-    BackContainer --> DataVol
+    %% Fluxos
+    Dev -->|git push| Repo
+    TF -->|terraform apply| Azure
+    Repo --> GHA
+    Secrets -.-> GHA
+    GHA -->|SSH Deploy Automatizado| VM
+    VM --> Docker
+    Docker --> Frontend
+    Docker --> Backend
+    Backend --> DB
 ```
 
 ---
