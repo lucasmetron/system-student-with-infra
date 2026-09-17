@@ -53,7 +53,7 @@ export default function MateriasPage() {
           <h1 className="font-headline-lg text-on-surface tracking-tight">Cadastro de Matérias</h1>
           <p className="font-body-md text-on-surface-variant">Gestão da matriz curricular, ementas e carga horária disciplinar.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
           <Button variant="secondary" icon="menu_book">Matriz Curricular Base</Button>
           <Button variant="primary" icon="add" onClick={() => document.getElementById('form-materia').scrollIntoView({behavior: 'smooth'})}>Nova Matéria</Button>
         </div>

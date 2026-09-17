@@ -60,7 +60,7 @@ export default function ProfessoresPage() {
           <h1 className="font-headline-lg text-on-surface tracking-tight">Cadastro de Professores</h1>
           <p className="font-body-md text-on-surface-variant">Gestão do corpo docente, alocação de disciplinas e controle de turmas.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 self-start lg:self-center">
           <Button variant="secondary" icon="download">Exportar Relatório</Button>
           <Button variant="primary" icon="person_add" onClick={() => document.getElementById('form-prof').scrollIntoView({behavior: 'smooth'})}>Novo Docente</Button>
         </div>
