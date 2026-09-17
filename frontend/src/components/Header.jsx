@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header({ onMenuToggle, isSidebarOpen }) {
   return (
-    <header className="fixed top-0 left-0 lg:left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-4 sm:px-6 lg:px-8 border-b border-surface-container/60 transition-all duration-300">
+    <header className="fixed top-0 left-0 lg:left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-[15px] border-b border-surface-container/60 transition-all duration-300">
       <div className="flex items-center gap-3 flex-1 max-w-xl">
         {/* Botão Hambúrguer Mobile */}
         <button

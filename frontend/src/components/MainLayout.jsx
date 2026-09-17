@@ -11,16 +11,16 @@ export default function MainLayout() {
       {/* Sidebar Desktop + Mobile Drawer */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      {/* Conteúdo Principal com compensação da barra lateral no Desktop */}
-      <div className="lg:pl-72 flex flex-col flex-1 min-w-0 transition-all duration-300">
-        {/* Header fixo no topo com botão hambúrguer mobile */}
+      {/* Conteúdo Principal ocupando 100% da largura útil sem centralização */}
+      <div className="lg:pl-72 flex flex-col flex-1 min-w-0">
+        {/* Header fixo no topo com alinhamento de 15px */}
         <Header
           onMenuToggle={() => setSidebarOpen(prev => !prev)}
           isSidebarOpen={sidebarOpen}
         />
 
-        {/* Área de conteúdo das rotas (pt-24 garante 32px de respiro abaixo do Header fixo de h-16) */}
-        <main className="w-full flex-1 pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        {/* 100% de largura, alinhado à esquerda e com 15px de padding em todos os lados (pt-[79px] = 64px header + 15px respiro) */}
+        <main className="w-full flex-1 pt-[79px] px-[15px] pb-[15px]">
           <Outlet />
         </main>
       </div>
