@@ -1,0 +1,35 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Conectar via SSH e Atualizar a Aplicação
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USERNAME }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            set -e
+            echo "🚀 Atualizando o repositório na VM..."
+            cd /opt/educacore
+            
+            # Garante que o Git não reclame de permissão de diretório
+            git config --global --add safe.directory /opt/educacore
+            
+            # Puxa as alterações mais recentes da branch main
+            git pull origin main
+            
+            echo "🐳 Reconstruindo e reiniciando os contêineres Docker..."
+            docker compose down
+            docker compose up --build -d
+            
+            echo "✅ Deploy finalizado com sucesso!"

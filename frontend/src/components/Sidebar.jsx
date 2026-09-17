@@ -29,7 +29,7 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-1.5 px-4">
           <NavLink to="/alunos" className={linkClasses}>
             <span className="material-symbols-outlined text-[20px]">school</span>
-            <span>Cadastro de Alunos</span>
+            <span>Cadastro de Alunos testando alto deploy</span>
           </NavLink>
           <NavLink to="/professores" className={linkClasses}>
             <span className="material-symbols-outlined text-[20px]">co_present</span>
