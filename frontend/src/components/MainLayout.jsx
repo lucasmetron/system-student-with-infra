@@ -19,8 +19,8 @@ export default function MainLayout() {
           isSidebarOpen={sidebarOpen}
         />
 
-        {/* 100% de largura, alinhado à esquerda e com 15px de padding em todos os lados (pt-[79px] = 64px header + 15px respiro) */}
-        <main className="w-full flex-1 pt-[79px] px-[15px] pb-[15px]">
+        {/* 100% de largura, alinhado à esquerda e com 40px de padding em todos os lados (pt-[104px] = 64px header + 40px respiro) */}
+        <main className="w-full flex-1 pt-[104px] px-5 sm:px-[40px] pb-[40px]">
           <Outlet />
         </main>
       </div>
