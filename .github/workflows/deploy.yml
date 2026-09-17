@@ -19,6 +19,9 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             set -e
+            echo "🔧 Ajustando permissões da pasta..."
+            sudo chown -R $USER:$USER /opt/educacore
+
             echo "🚀 Atualizando o repositório na VM..."
             cd /opt/educacore
             
